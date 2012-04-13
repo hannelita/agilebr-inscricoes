@@ -1,6 +1,9 @@
 package br.com.agilebrazil.inscricoes.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import br.com.agilebrazil.inscricoes.model.Attendee;
@@ -17,12 +20,12 @@ public class AttendeeDAO {
 	}
 
 	public boolean doesntExist(Attendee attendee) {
-		String jpql = "select email from Attendee attendee where attendee.email =:email";
-		TypedQuery<Attendee> query = em.createQuery(jpql, Attendee.class);
+		String jpql = "select attendee from Attendee attendee where attendee.email =:email";
+		Query query = em.createQuery(jpql);
 		query.setParameter("email", attendee.getEmail());
 		
-		Attendee result = query.getSingleResult();
-		return result==null;
+		List<Attendee> result = query.getResultList();
+		return result.size()==0;
 	}
 
 	public void save(Attendee attendee) {

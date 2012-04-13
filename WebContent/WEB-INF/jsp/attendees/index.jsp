@@ -8,7 +8,26 @@
 </head>
 <body>
 
-Ping
+<form action="create">
+	Nome: <input name="attendee.firstName"><br />
+	Sobrenome: <input name="attendee.lastName"><br />
+	Nome para o crachá: <input name="attendee.badgeName"><br />
+	Sexo: <input name="attendee.gender"><br />
+	Email: <input name="attendee.email"><br />
+	Confirme o email: <input><br />
+	Twitter: <input name="attendee.twitter"><br />
+	Empresa: <input name="attendee.organization"><br />
+	Telefone de contato: <input name="attendee.phone"><br />
+	Endereço <input name="attendee.address"><br />
+	CEP: <input name="attendee.zipcode"><br />
+	Bairro: <input name="attendee.neighbourhood"><br />
+	Cidade: <input name="attendee.city"><br />
+	Estado: <input name="attendee.state"><br />
+	País: <input name="attendee.country"><br />
+	
+	<input type="submit" value="Cadastrar">
+	
+</form>
 
 </body>
 </html>

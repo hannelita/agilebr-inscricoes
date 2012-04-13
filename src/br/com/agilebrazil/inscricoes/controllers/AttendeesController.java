@@ -21,7 +21,7 @@ public class AttendeesController {
 		
 	}
 	
-	
+	@Get
 	public void create(Attendee attendee){
 		if(attendeeDAO.doesntExist(attendee)){
 			attendeeDAO.save(attendee);
