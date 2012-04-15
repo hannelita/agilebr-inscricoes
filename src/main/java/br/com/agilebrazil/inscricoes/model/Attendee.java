@@ -1,8 +1,12 @@
 package br.com.agilebrazil.inscricoes.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import org.hibernate.validator.NotEmpty;
 
 import br.com.caelum.vraptor.ioc.Component;
 
@@ -14,10 +18,15 @@ public class Attendee {
 	@GeneratedValue
 	private Long id;
 
+	@NotEmpty
 	private String email;
 
+	@NotEmpty
 	private String firstName;
+	
+	@NotEmpty
 	private String lastName;
+	
 	private String gender;
 	private String badgeName;
 	private String organization;
@@ -25,10 +34,18 @@ public class Attendee {
 	private String address;
 	private String neighbourhood;
 	private String zipcode;
+	
+	@NotEmpty
 	private String phone;
-	private String country;
-	private String state;
+	
+	@NotEmpty
 	private String city;
+	
+	@Enumerated(EnumType.STRING)
+	private State state;
+	
+	@NotEmpty
+	private String country;
 
 	public Long getId() {
 		return id;
@@ -63,6 +80,9 @@ public class Attendee {
 	}
 
 	public String getBadgeName() {
+		if (badgeName == null) {
+			badgeName = firstName + " " + lastName;
+		}
 		return badgeName;
 	}
 
@@ -126,11 +146,11 @@ public class Attendee {
 		this.country = country;
 	}
 
-	public String getState() {
+	public State getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 

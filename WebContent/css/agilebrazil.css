@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+
+#errors {
+	margin: 0px auto 10px;
+	padding: 5px;
+	background: #FFBBBB;
+	text-align: center;
+	border: 2px dashed #FF9999;
+}
