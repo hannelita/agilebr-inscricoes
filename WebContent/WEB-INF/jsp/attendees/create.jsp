@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Agile Brazil - Inscrições</title>
+<title>Agile Brazil - <fmt:message key="registration.title" /></title>
 </head>
 <body>
 	<fmt:message key="attendee.created" />

@@ -27,7 +27,8 @@ public class Attendee {
 	@NotEmpty
 	private String lastName;
 	
-	private String gender;
+	@Enumerated(EnumType.STRING)
+	private Gender gender;
 	private String badgeName;
 	private String organization;
 	private String twitter;
@@ -162,14 +163,12 @@ public class Attendee {
 		this.city = city;
 	}
 
-	public String getGender() {
+	public Gender getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
-	
-	
 
 }

@@ -2,6 +2,7 @@ package br.com.agilebrazil.inscricoes.controllers;
 
 import br.com.agilebrazil.inscricoes.dao.AttendeeDAO;
 import br.com.agilebrazil.inscricoes.model.Attendee;
+import br.com.agilebrazil.inscricoes.model.Gender;
 import br.com.agilebrazil.inscricoes.model.State;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
@@ -11,12 +12,10 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 
 @Resource
 public class AttendeesController {
-	
 
 	private final AttendeeDAO dao;
 	private final Result result;
 	private final Validator validator;
-
 
 	public AttendeesController(Result result, Validator validator, AttendeeDAO attendeeDAO) {
 		this.result = result;
@@ -26,6 +25,7 @@ public class AttendeesController {
 	
 	public void index(){
 		result.include("states", State.values());
+		result.include("genders", Gender.values());
 	}
 	
 	@Post

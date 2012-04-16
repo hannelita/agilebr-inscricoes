@@ -1,5 +1,83 @@
 @CHARSET "UTF-8";
 
+html {
+	background-color: #FFF;
+}
+
+body {
+	width: 940px;
+	padding: 0px 0px 20px;
+	margin: 0px auto;
+	background-color: #DDD;
+	color: #333;
+}
+
+h1 {
+	font-size: 30px;
+	margin: 0px;
+	padding: 20px;
+}
+
+.header {
+	margin: 0px auto;
+	text-align: center;
+}
+
+.author {
+	padding: 10px 20px;
+	text-align: right;
+}
+
+.clearfix {
+	clear: both;
+}
+
+form {
+	overflow: hidden;
+	clear: both;
+}
+
+label.small {
+	margin: 0 30px 20px;
+	clear: none;
+	width: auto;
+}
+
+label {
+	clear: left;
+	float: left;
+	height: 1em;
+	margin: 0 30px 20px;
+	padding-right: 10px;
+	text-align: right;
+	width: 18%;
+}
+
+input.small {
+	width: 28%;
+}
+
+input {
+	float: left;
+	height: 1em;
+	width: 70%;
+	margin-bottom: 15px;
+}
+
+select {
+	float: left;
+	height: 1.7em;
+	width: 18em;
+	margin: -3px 0px 0px
+}
+
+button {
+	float: left;
+	clear: both;
+	margin-left: 47%;
+	display: inline;
+}
+
 #errors {
 	margin: 0px auto 10px;
 	padding: 5px;
