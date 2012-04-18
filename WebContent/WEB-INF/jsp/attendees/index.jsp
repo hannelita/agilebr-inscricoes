@@ -10,6 +10,7 @@
 	<link href="<c:url value='/css/agilebrazil.css' />" rel="stylesheet" />
 	<script src="<c:url value='/js/jquery-1.4.3.min.js' />"></script>
 	<script src="<c:url value='/js/jquery-ui-1.8.5.min.js' />"></script>
+	<script src="<c:url value='/js/agilebrazil.js' />"></script>
 </head>
 <body>
 	<div class="header">
@@ -29,7 +30,7 @@
 		<label for="lastName"><fmt:message key="attendee.lastName" /></label> <input name="attendee.lastName" id="lastName" /><br />
 		<label for="badgeName"><fmt:message key="attendee.badgeName" /></label> <input name="attendee.badgeName" id="badgeName"/><br />
 		<label for="email"><fmt:message key="attendee.email" /></label> <input name="attendee.email" id="email" /><br />
-		<label for="emailConfirmation"><fmt:message key="form.emailConfirmation" /></label> <input name="emailConfirmation" class="required" id="emailConfirmation" /><br />
+		<label for="emailConfirmation"><fmt:message key="form.emailConfirmation" /></label> <input name="emailConfirmation" class="required" id="emailConfirmation" onblur="checkSimilarity('email')"/><br />
 		<label for="phone"><fmt:message key="attendee.phone" /></label> <input name="attendee.phone" id="phone"  /><br />
 		<label for="gender" ><fmt:message key="attendee.gender" /></label> <select name="attendee.gender" id="gender">
 			<c:forEach var="gender" items="${genders }">
@@ -53,17 +54,6 @@
 		<span class="ui-button-text"><fmt:message key="form.register" /></span>
 		</button>
 	</form>
-
-	<script type="text/javascript">
-		var confirmation = $("#emailConfirmation");
-		confirmation.blur(function() {
-			if (confirmation.val() != $("#email").val()) {
-				confirmation.css({background: "#FFBBBB"});
-			} else {
-				confirmation.css({background: "#FFFFFF"});
-			}
-		});
-	</script>
-
+	
 </body>
 </html>
