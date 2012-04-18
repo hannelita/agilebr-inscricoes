@@ -19,9 +19,11 @@
 
 	<c:if test="${not empty errors }">
 		<div id="errors">
+			<ul>
 			<c:forEach var="error" items="${errors}">
-				<fmt:message key="${error.message }" />
+				<li><fmt:message key="${error.message }" /></li>
 			</c:forEach>
+			</ul>
 		</div>
 	</c:if>
 	
