@@ -12,6 +12,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import br.com.agilebrazil.inscricoes.dao.AttendeeDAO;
 import br.com.agilebrazil.inscricoes.model.Attendee;
+import br.com.agilebrazil.inscricoes.model.Gender;
+import br.com.agilebrazil.inscricoes.model.State;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.util.test.MockValidator;
@@ -29,7 +31,9 @@ public class AttendeesControllerTest {
 		AttendeesController controller = new AttendeesController(result, validator, attendeeDAO);
 		when(attendeeDAO.alreadyExists(any(Attendee.class))).thenReturn(false);
 
-		controller.create(createAttendeeWith("some@email.com"), "other@email.com");
+		Attendee attendee = createAttendee();
+		attendee.setEmail("some@email.com");
+		controller.create(attendee, "other@email.com");
 	}
 
 	@Test
@@ -37,16 +41,39 @@ public class AttendeesControllerTest {
 		AttendeesController controller = new AttendeesController(result, validator, attendeeDAO);
 		when(attendeeDAO.alreadyExists(any(Attendee.class))).thenReturn(false);
 		
-		Attendee attendee = createAttendeeWith("same@email.com");
+		Attendee attendee = createAttendee();
+		attendee.setEmail("same@email.com");
 		controller.create(attendee, "same@email.com");
 		
 		verify(attendeeDAO).save(attendee);
 	}
 	
-	private Attendee createAttendeeWith(String email) {
+	@Test(expected=ValidationException.class)
+	public void shouldNotCreateAttendeeWhenEmailIsntLowerCase() {
+		AttendeesController controller = new AttendeesController(result, validator, attendeeDAO);
+		when(attendeeDAO.alreadyExists(any(Attendee.class))).thenReturn(false);
+		
+		Attendee attendee = createAttendee();
+		attendee.setEmail("UpperCase@email.com");
+		controller.create(attendee, "UpperCase@email.com");
+	}
+	
+	private Attendee createAttendee() {
 		Attendee attendee = new Attendee();
-		attendee.setAddress("R. Vergueiro, 3185");
-		attendee.setEmail(email);
+		attendee.setFirstName("John");
+		attendee.setLastName("Doe");
+		attendee.setEmail("some@email.com");
+		attendee.setGender(Gender.MALE);
+		attendee.setBadgeName("Johnny");
+		attendee.setOrganization("My Startup");
+		attendee.setTwitter("@startuper");
+		attendee.setAddress("14 Some Nice Rd");
+		attendee.setNeighbourhood("Good Place");
+		attendee.setZipcode("04251");
+		attendee.setPhone("+1 555 875 9856");
+		attendee.setCity("Good Village");
+		attendee.setState(State.NOT_APPLICABLE);
+		attendee.setCountry("Different Country");
 		return attendee;
 	}
 
