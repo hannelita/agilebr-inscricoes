@@ -31,7 +31,7 @@
 		<label for="email"><fmt:message key="attendee.email" /></label> <input name="attendee.email" id="email" /><br />
 		<label for="emailConfirmation"><fmt:message key="form.emailConfirmation" /></label> <input name="emailConfirmation" class="required" id="emailConfirmation" /><br />
 		<label for="phone"><fmt:message key="attendee.phone" /></label> <input name="attendee.phone" id="phone"  /><br />
-		<label for="gender" ><fmt:message key="attendee.gender" /></label> <select name="attendee.state" id="state">
+		<label for="gender" ><fmt:message key="attendee.gender" /></label> <select name="attendee.gender" id="gender">
 			<c:forEach var="gender" items="${genders }">
 				<option value="${gender.name }"><fmt:message key="gender.${gender.name }"/></option>
 			</c:forEach>
