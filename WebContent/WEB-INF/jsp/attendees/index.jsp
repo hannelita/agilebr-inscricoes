@@ -8,9 +8,9 @@
 	<title>Agile Brazil - <fmt:message key="registration.title" /></title>
 	<link href="<c:url value='/css/jquery.ui.all.css' />" rel="stylesheet" />
 	<link href="<c:url value='/css/agilebrazil.css' />" rel="stylesheet" />
+	<script src="<c:url value='/js/agilebrazil.js' />"></script>
 	<script src="<c:url value='/js/jquery-1.4.3.min.js' />"></script>
 	<script src="<c:url value='/js/jquery-ui-1.8.5.min.js' />"></script>
-	<script src="<c:url value='/js/agilebrazil.js' />"></script>
 </head>
 <body>
 	<div class="header">
@@ -41,16 +41,16 @@
 		</select><br />
 		<label for="twitter"><fmt:message key="attendee.twitter" /></label> <input name="attendee.twitter" id="twitter" /><br />
 		<label for="organization"><fmt:message key="attendee.organization" /></label> <input name="attendee.organization" id="organization" /><br />
-		<label for="address"><fmt:message key="attendee.address" /></label> <input name="attendee.address" id="address" /><br />
-		<label for="zipcode"><fmt:message key="attendee.zipcode" /></label> <input name="attendee.zipcode" id="zipcode"  /><br />
-		<label for="neighbourhood" ><fmt:message key="attendee.neighbourhood" /></label> <input name="attendee.neighbourhood" id="neighbourhood" /><br />
-		<label for="city"><fmt:message key="attendee.city" /></label> <input name="attendee.city" id="city" /><br />
-		<label for="state" ><fmt:message key="attendee.state" /></label> <select name="attendee.state" id="state">
+		<label for="street"><fmt:message key="address.street" /></label> <input name="attendee.address.street" id="street" /><br />
+		<label for="zipcode"><fmt:message key="address.zipcode" /></label> <input name="attendee.address.zipcode" id="zipcode"  /><br />
+		<label for="neighbourhood" ><fmt:message key="address.neighbourhood" /></label> <input name="attendee.address.neighbourhood" id="neighbourhood" /><br />
+		<label for="city"><fmt:message key="address.city" /></label> <input name="attendee.address.city" id="city" /><br />
+		<label for="state" ><fmt:message key="address.state" /></label> <select name="attendee.address.state" id="state">
 			<c:forEach var="state" items="${states }">
 				<option value="${state.name }"><fmt:message key="state.${state.name }"/></option>
 			</c:forEach>
 		</select><br />
-		<label for="country"><fmt:message key="attendee.country" /></label> <input name="attendee.country" id="country" /><br />
+		<label for="country"><fmt:message key="address.country" /></label> <input name="attendee.address.country" id="country" /><br />
 
 		<button class="ui-button ui-button-text-only" type="submit">
 		<span class="ui-button-text"><fmt:message key="form.register" /></span>

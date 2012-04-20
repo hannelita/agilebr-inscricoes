@@ -31,7 +31,7 @@ public class AttendeesController {
 	@Post
 	public void create(Attendee attendee, String emailConfirmation){
 		validator.validate(attendee);
-		if (!attendee.getEmail().equals(emailConfirmation))
+		if (!attendee.getEmail().equals(emailConfirmation.toLowerCase()))
 			validator.add(new ValidationMessage("email.confirmation", "attendee"));
 		if(dao.alreadyExists(attendee)){
 			validator.add(new ValidationMessage("already.registered", "attendee"));

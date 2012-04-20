@@ -48,15 +48,7 @@ public class AttendeesControllerTest {
 		verify(attendeeDAO).save(attendee);
 	}
 	
-	@Test(expected=ValidationException.class)
-	public void shouldNotCreateAttendeeWhenEmailIsntLowerCase() {
-		AttendeesController controller = new AttendeesController(result, validator, attendeeDAO);
-		when(attendeeDAO.alreadyExists(any(Attendee.class))).thenReturn(false);
-		
-		Attendee attendee = createAttendee();
-		attendee.setEmail("UpperCase@email.com");
-		controller.create(attendee, "UpperCase@email.com");
-	}
+	
 	
 	private Attendee createAttendee() {
 		Attendee attendee = new Attendee();

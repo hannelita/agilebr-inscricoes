@@ -1,14 +1,16 @@
 package br.com.agilebrazil.inscricoes.model;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-import org.hibernate.validator.Max;
+import org.hibernate.validator.Email;
+import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
-import org.hibernate.validator.Size;
 
 import br.com.caelum.vraptor.ioc.Component;
 
@@ -16,52 +18,41 @@ import br.com.caelum.vraptor.ioc.Component;
 @Entity
 public class Attendee {
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	private Long id;
 
-	@NotEmpty @Size(min=6, max=10, message="long.attendee.email")
+	@NotEmpty(message = "empty.attendee.firstName")
+	@Length(max = 100, message = "long.attendee.firstName")
+	private String firstName;
+
+	@NotEmpty(message = "empty.attendee.firstName")
+	@Length(max = 100, message = "long.attendee.lastName")
+	private String lastName;
+
+	@Length(max = 100, message = "long.attendee.badgeName")
+	private String badgeName;
+	
+	@NotEmpty(message = "empty.attendee.email")
+	@Email(message = "invalid.attendee.email")
+	@Length(min = 6, max = 100, message = "long.attendee.email")
 	private String email;
 
-	@NotEmpty @Max(value=100, message="long.attendee.firstName")
-	private String firstName;
-	
-	@NotEmpty @Max(value=100, message="long.attendee.lastName")
-	private String lastName;
-	
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
-	
-	@Max(value=100, message="long.attendee.badgeName")
-	private String badgeName;
 
-	@Max(value=100, message="long.attendee.organization")
-	private String organization;
-
-	@Max(value=100, message="long.attendee.organization")
+	@Length(max = 100, message = "long.attendee.twitter")
 	private String twitter;
 
-	@Max(value=300, message="long.attendee.address")
-	private String address;
-	
-	@Max(value=100, message="long.attendee.neighbourhood")
-	private String neighbourhood;
-	
-	@Max(value=10, message="long.attendee.zipcode")
-	private String zipcode;
-	
-	@NotEmpty @Size(min=6, max=15, message="long.attendee.phone")
+	@Length(max = 100, message = "long.attendee.organization")
+	private String organization;
+
+	@NotEmpty
+	@Length(min = 6, max = 15, message = "long.attendee.phone")
 	private String phone;
-	
-	@NotEmpty
-	@Max(value=100, message="long.attendee.city")
-	private String city;
-	
-	@Enumerated(EnumType.STRING)
-	private State state;
-	
-	@NotEmpty
-	@Max(value=100, message="long.attendee.country")
-	private String country;
+
+	@Embedded 
+	private Address address;
 
 	public Long getId() {
 		return id;
@@ -105,11 +96,11 @@ public class Attendee {
 	public void setBadgeName(String badgeName) {
 		this.badgeName = badgeName.trim();
 	}
-	
+
 	public Gender getGender() {
 		return gender;
 	}
-	
+
 	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
@@ -127,31 +118,31 @@ public class Attendee {
 	}
 
 	public void setTwitter(String twitter) {
-		this.twitter = twitter.trim();
+		this.twitter = twitter.trim().replace("@", "");
 	}
 
 	public String getAddress() {
-		return address;
+		return address.getStreet();
 	}
 
-	public void setAddress(String address) {
-		this.address = address.trim();
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public String getNeighbourhood() {
-		return neighbourhood;
+		return address.getNeighbourhood();
 	}
 
 	public void setNeighbourhood(String neighbourhood) {
-		this.neighbourhood = neighbourhood.trim();
+		this.address.setNeighbourhood(neighbourhood.trim());
 	}
 
 	public String getZipcode() {
-		return zipcode;
+		return address.getZipcode();
 	}
 
 	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode.trim();
+		this.address.setZipcode(zipcode.trim());
 	}
 
 	public String getPhone() {
@@ -163,27 +154,27 @@ public class Attendee {
 	}
 
 	public String getCountry() {
-		return country;
+		return address.getCountry();
 	}
 
 	public void setCountry(String country) {
-		this.country = country.trim();
+		this.address.setCountry(country.trim());
 	}
 
 	public State getState() {
-		return state;
+		return address.getState();
 	}
 
 	public void setState(State state) {
-		this.state = state;
+		this.address.setState(state);
 	}
 
 	public String getCity() {
-		return city;
+		return address.getCity();
 	}
 
 	public void setCity(String city) {
-		this.city = city.trim();
+		this.address.setCity(city.trim());
 	}
 
 }
